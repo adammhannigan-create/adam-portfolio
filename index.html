@@ -274,6 +274,9 @@
     .hero-bio,.about-body,.now-body,.mo-desc,.wi-desc,.film-body{text-wrap:pretty;}
     @media (hover:none){.fs-vid-player:hover{transform:none;box-shadow:none;}.photo-card:hover{transform:none;box-shadow:none;}}
 
+    /* ── LAYERED SECTIONS: soften the block-on-block seams ── */
+    #skills,.work-hdr,#film,#cv,#photos,#now,footer{border-top-left-radius:2.75rem;border-top-right-radius:2.75rem;margin-top:-2.75rem;position:relative;}
+
     /* ── RESPONSIVE ── */
     @media(max-width:900px){
       nav{padding:0 1.25rem;}
@@ -290,6 +293,7 @@
       .work-hdr,#work{padding-left:1.5rem;padding-right:1.5rem;}
       .wi{grid-template-columns:48px 1fr;}
       .wi-r,.wi-thumb{display:none;}
+      #skills,.work-hdr,#film,#cv,#photos,#now,footer{border-top-left-radius:1.9rem;border-top-right-radius:1.9rem;margin-top:-1.9rem;}
       #film{padding:3rem 1.5rem;}
       .film-feature{margin-bottom:2.5rem;}
       .film-inner{grid-template-columns:1fr;}
