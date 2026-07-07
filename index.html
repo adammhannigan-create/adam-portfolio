@@ -415,14 +415,14 @@
       <div class="wi-r"><p class="wi-role">Marketing &middot; Mockup</p><p class="wi-year">2026</p><span class="wi-arr">&#8599;</span></div>
     </div>
 
-    <div class="wi rv" tabindex="0" onkeydown="if(event.key==='Enter')this.click();" onclick="openModal('family')">
+    <div class="wi rv" tabindex="0" onkeydown="if(event.key==='Enter')this.click();" onclick="openModal('redoor')">
       <span class="wi-num">05</span>
       <div>
-        <h3 class="wi-title">Family Business Rebuild</h3>
-        <p class="wi-desc">Redesigned my father&rsquo;s garage-door manufacturing website and e-commerce, and improved waste and cash flow.</p>
-        <div class="wi-tags"><span class="wi-tag-lbl">E-Commerce, Web, Ops</span><span class="wi-tag">E-COMMERCE</span><span class="wi-tag">WEB</span><span class="wi-tag">OPS</span></div>
+        <h3 class="wi-title">ReDoor UK</h3>
+        <p class="wi-desc">Designed and built the website for ReDoor, a small business restoring salvaged garage doors. A simple catalogue with live availability, filtering and enquiries.</p>
+        <div class="wi-tags"><span class="wi-tag-lbl">Web, Design, E-Commerce</span><span class="wi-tag">WEB</span><span class="wi-tag">DESIGN</span><span class="wi-tag">E-COMMERCE</span></div>
       </div>
-      <div class="wi-r"><p class="wi-role">Web and E-Commerce</p><p class="wi-year">2019&ndash;22</p><span class="wi-arr">&#8599;</span></div>
+      <div class="wi-r"><p class="wi-role">Design and Build</p><p class="wi-year">2026</p><span class="wi-arr">&#8599;</span></div>
     </div>
 
     <div class="wi rv" tabindex="0" onkeydown="if(event.key==='Enter')this.click();" onclick="openModal('efc')">
@@ -561,6 +561,10 @@
         <div class="cv-item">
           <span class="cv-yr">2022&ndash;23</span>
           <div><p class="cv-t">Barback, The Guild Bar, Chester</p><p class="cv-s">Supporting bar operations in a busy venue.</p></div>
+        </div>
+        <div class="cv-item">
+          <span class="cv-yr">2020&ndash;21</span>
+          <div><p class="cv-t">Family Business Rebuild</p><p class="cv-s">Web and e-commerce for my family&rsquo;s garage-door company; cut waste and improved cash flow.</p></div>
         </div>
       </div>
     </div>
@@ -785,9 +789,9 @@ const PJ={
   pizza:{t:"Pizza Restaurant, Going Ad’s",n:"04",y:"2026",r:"Marketing · Mockup",
     d:"I used Claude AI to create a mock-up pizza brand, Going Ad’s, to demonstrate a full Google Ads campaign: copy, creative direction, and a tight conversion-led plan. A spec project showing how I approach paid digital.",
     tags:["ADS","MARKETING","MOCKUP"],img:"pizza"},
-  family:{t:"Family Business Rebuild",n:"05",y:"2019–22",r:"Web & E-Commerce",
-    d:"From sixteen I worked with my father at his garage-door manufacturing and fitting company. During COVID, I worked a full year dealing with customers and suppliers in person and on the phone. I pushed to cut waste and improve cash flow through roller door spreadsheets. The original lesson in doing things correctly.",
-    tags:["E-COMMERCE","WEB","OPS"],bg:"#244D38",ph:"FAMILY BUSINESS REBUILD"},
+  redoor:{t:"ReDoor UK",n:"05",y:"2026",r:"Design and Build",
+    d:"I designed and built the website for ReDoor, a small business restoring salvaged garage doors. Old doors are cleaned, serviced and repainted to order, so the site is a simple catalogue with live availability, filtering, product pages and enquiry links.",
+    tags:["WEB","DESIGN","E-COMMERCE"],lnk:"Visit the site ↗",href:"https://adammhannigan-create.github.io/ReDoorUK/",site:"https://adammhannigan-create.github.io/ReDoorUK/"},
   efc:{t:"Economics FC",n:"06",y:"2022–25",r:"Club Captain",
     d:"Captained Economics FC at the University of Liverpool for my final season. Organising, motivating and leading a squad, the same skills I bring to a film set or a marketing plan, just muddier. We also secured a sponsorship with the Black Cat, creating a hub for the club.",
     tags:["LEADERSHIP","TEAMWORK","SPONSORSHIP"],img:"efc"}
@@ -799,6 +803,8 @@ function openModal(id){
     ?(location.protocol==='file:'
       ?`<a class="mo-embed mo-embed-poster" href="${p.href}" target="_blank" rel="noopener"><img class="film-thumb" src="https://i.ytimg.com/vi/1R-1Y7M-Jsg/hqdefault.jpg" alt=""><span class="film-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>`
       :`<div class="mo-embed"><iframe src="${p.yt}" title="${p.t}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`)
+    :p.site
+    ?`<div class="mo-embed"><iframe src="${p.site}" title="${p.t}" loading="lazy"></iframe></div>`
     :p.vid
     ?`<video id="mo-video" autoplay loop controls playsinline style="width:100%;height:auto;max-height:68vh;object-fit:contain;border-radius:20px 20px 0 0;display:block;background:#000;"><source src="${p.vid}" type="video/mp4"></video>`
     :src?`<img class="mo-img" src="${src}" alt="${p.t}">`
