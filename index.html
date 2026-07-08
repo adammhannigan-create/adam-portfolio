@@ -307,6 +307,34 @@
       .now-inner{grid-template-columns:1fr;gap:3rem;}
     }
     @media(prefers-reduced-motion:reduce){*{transition:none!important;}}
+    /* ── SECTION RECOLOUR (Work on green, Film on cream) ── */
+    .work-hdr{background:var(--green)!important;}
+    #work{background:var(--green)!important;}
+    .work-hdr .eyebrow{color:rgba(255,255,255,0.55);}
+    h2.sec-hl{color:#fff;}
+    .work-list{border-top-color:rgba(255,255,255,0.18);}
+    .wi{border-bottom-color:rgba(255,255,255,0.12);}
+    .wi:hover{background:rgba(255,255,255,0.06);}
+    .wi-title{color:#fff;}
+    .wi-desc{color:rgba(255,255,255,0.7);}
+    .wi-tag-lbl{color:rgba(255,255,255,0.5);}
+    .wi-tag{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.85);border-color:rgba(255,255,255,0.22);}
+    .wi-role{color:#fff;}
+    .wi-year{color:rgba(255,255,255,0.55);}
+    .wi-arr{color:#fff;}
+    .wi-thumb{border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.06);}
+    #film{background:var(--cream)!important;color:var(--ink)!important;}
+    .film-eyebrow{color:var(--muted);}
+    h2.film-hl{color:var(--ink);}
+    .film-body{color:var(--muted);}
+    .btn-film{background:var(--green);color:#fff;}
+    #film .tag{border-color:var(--border);color:var(--muted);}
+    .film-step{border-top-color:var(--border);}
+    .fs-title{color:var(--ink);}
+    .fs-desc{color:var(--muted);}
+    .film-feature-lbl{color:var(--muted);}
+    .film-feature-cap{color:var(--muted);}
+    .film-embed{border-color:var(--border);box-shadow:0 30px 80px rgba(36,77,56,0.18);}
   </style>
 </head>
 <body>
@@ -340,40 +368,7 @@
 </section>
 
 <!-- ════════════════ ABOUT DARK ════════════════ -->
-<section id="skills" style="background:var(--green);color:#fff;padding:5rem;">
-  <div class="about-inner">
-    <div class="about-photos">
-      <img class="ap-main" src="me-graduation.jpg" onerror="this.style.display='none';this.closest('.about-photos').classList.add('ap-fallback');" alt="Adam Hannigan on graduation day, University of Liverpool">
-      <span class="ap-caption">Graduation day.</span>
-    </div>
-    <div>
-      <p class="about-eyebrow">SKILLS</p>
-      <h2 class="about-hl rv">What I bring, and where I&rsquo;ve proven it.</h2>
-      <div class="skill-list">
-        <div class="skill-item">
-          <h3 class="skill-t">Organisation</h3>
-          <p class="skill-d">I was the only student on my course allowed to shoot a full film, because I turned up with the whole thing planned in Milanote: shot lists, call sheets, locations and crew. On the day I ran a fixed one-day schedule around breaks, crew and a hard deadline.</p>
-        </div>
-        <div class="skill-item">
-          <h3 class="skill-t">Editing, DaVinci Resolve and CapCut Pro</h3>
-          <p class="skill-d">I cut and colour-graded my own short film in DaVinci Resolve, and I turn around fast social edits in CapCut Pro for Tiero.</p>
-        </div>
-        <div class="skill-item">
-          <h3 class="skill-t">AI fluency, Claude Code, Cowork and Design</h3>
-          <p class="skill-d">I built this site with Claude, run my weekly reports and task automation through it, and help design Tiero, an AI product for students.</p>
-        </div>
-        <div class="skill-item">
-          <h3 class="skill-t">Branding</h3>
-          <p class="skill-d">I look after Tiero&rsquo;s brand voice and social presence, and built a full mock ad campaign for a made-up pizza brand, Going Ad&rsquo;s, to show how I approach it.</p>
-        </div>
-        <div class="skill-item">
-          <h3 class="skill-t">Microsoft Office</h3>
-          <p class="skill-d">Through COVID I ran the spreadsheets for my dad&rsquo;s garage-door business to cut waste and keep on top of cash flow. I still work in Word, Excel and PowerPoint every week.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ════════════════ WORK ════════════════ -->
 <div class="work-hdr">
@@ -389,7 +384,7 @@
       <span class="wi-num">01</span>
       <div>
         <h3 class="wi-title">Tiero</h3>
-        <p class="wi-desc">Leading brand and social strategy for the Tiero app, a start up, positioning, content design, and the launch campaign.</p>
+        <p class="wi-desc">Leading brand and social strategy for the Tiero app, a start-up a friend and I have started. Its aim, to fix the graduate problem.</p>
         <div class="wi-tags"><span class="wi-tag-lbl">Marketing, Branding, Social</span><span class="wi-tag">MARKETING</span><span class="wi-tag">BRANDING</span><span class="wi-tag">SOCIAL</span></div>
       </div>
       <div class="wi-r"><p class="wi-role">Head of Marketing</p><p class="wi-year">2026</p><span class="wi-arr">&#8599;</span></div>
@@ -461,7 +456,7 @@
     <div class="film-left">
       <p class="film-eyebrow">FILM &middot; THE PROCESS</p>
       <h2 class="film-hl rv">How I make a film.</h2>
-      <p class="film-body">I write and direct my own independent short films, leading every stage of the pipeline. I had no budget, I gathered a team from social networking events, Facebook groups, friends and even lecturers!</p>
+      <p class="film-body">I write and direct my own independent short films, leading every stage of the pipeline. As a student, with no help from the university, I had no budget. I gathered a team from social networking events, Facebook groups, friends and even lecturers.</p>
       <p class="film-body">Here&rsquo;s how a film comes together, the bit I love most.</p>
       <a href="https://www.youtube.com/watch?v=1R-1Y7M-Jsg&t=10s" target="_blank" rel="noopener" class="btn-film">
         <span class="yt">&#9654;</span>Watch the film &#8599;
@@ -487,7 +482,7 @@
       <div class="film-step">
         <p class="fs-num">03</p>
         <h3 class="fs-title">Shoot</h3>
-        <p class="fs-desc">On set, directing performance and camera, keeping the day moving and the vision intact. It was a fast-paced day, we only had one day agreement with the set, I had to manage breaks, lunch, personal requirements, whilst balancing a piece of work I actually wanted.</p>
+        <p class="fs-desc">On set, directing performance and camera, keeping the day moving and the vision intact. It was a fast-paced day, we only had one day agreement with the set. Therefore, I had to manage breaks, lunch, personal requirements, whilst balancing a piece of work I actually wanted.</p>
       </div>
       <div class="film-step">
         <p class="fs-num">04</p>
@@ -516,6 +511,41 @@
 </section>
 
 <!-- ════════════════ CV ════════════════ -->
+<section id="skills" style="background:var(--green);color:#fff;padding:5rem;">
+  <div class="about-inner">
+    <div class="about-photos">
+      <img class="ap-main" src="me-graduation.jpg" onerror="this.style.display='none';this.closest('.about-photos').classList.add('ap-fallback');" alt="Adam Hannigan on graduation day, University of Liverpool">
+      <span class="ap-caption">Graduation day.</span>
+    </div>
+    <div>
+      <p class="about-eyebrow">SKILLS</p>
+      <h2 class="about-hl rv">What I bring, and where I&rsquo;ve proven it.</h2>
+      <div class="skill-list">
+        <div class="skill-item">
+          <h3 class="skill-t">Organisation</h3>
+          <p class="skill-d">I was the only student on my course allowed to shoot a full film. Within group meetings, my preparation within a planned Milanote containing shot lists, call sheets, locations and crew, meant I was given the green light.</p>
+        </div>
+        <div class="skill-item">
+          <h3 class="skill-t">Editing, DaVinci Resolve and CapCut Pro</h3>
+          <p class="skill-d">I cut and colour-graded my own short film in DaVinci Resolve, and I turn around fast social edits in CapCut Pro for Tiero.</p>
+        </div>
+        <div class="skill-item">
+          <h3 class="skill-t">AI fluency, Claude Code, Cowork and Design</h3>
+          <p class="skill-d">I built this site with Claude, run my weekly reports and task automation through it, and help design Tiero, an AI product for students.</p>
+        </div>
+        <div class="skill-item">
+          <h3 class="skill-t">Branding</h3>
+          <p class="skill-d">I look after Tiero&rsquo;s brand voice and social presence, and built a full mock ad campaign for a made-up pizza brand, Going Ad&rsquo;s, to show how I approach it.</p>
+        </div>
+        <div class="skill-item">
+          <h3 class="skill-t">Microsoft Office</h3>
+          <p class="skill-d">Through COVID, I created spreadsheets for my dad&rsquo;s garage-door business to cut waste and keep on top of cash flow. I still work in Word, Excel and PowerPoint every week.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="cv">
   <div class="cv-inner">
     <p class="eyebrow" style="color:var(--muted);">EXPERIENCE &middot; CV</p>
