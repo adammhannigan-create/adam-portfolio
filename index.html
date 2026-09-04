@@ -401,12 +401,11 @@
     .rc-card .rc-body{display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
     .rc-link{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;font-size:0.8rem;font-weight:600;color:var(--terra);border-bottom:1px solid transparent;transition:border-color 0.16s var(--ease-out);}
     .rc-link:hover{border-color:var(--terra);}
-    /* floating panel */
-    .rc-pop{position:fixed;left:0;top:0;z-index:150;width:400px;max-width:calc(100vw - 2rem);background:var(--cream-mid);border-radius:16px;box-shadow:0 28px 70px rgba(6,18,11,0.62);overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transform:translate3d(var(--rx,0px),var(--ry,0px),0) scale(0.975);transform-origin:center top;transition:opacity 0.19s var(--ease-out),transform 0.36s cubic-bezier(0.25,1,0.5,1),height 0.36s cubic-bezier(0.25,1,0.5,1),visibility 0.19s;}
-    .rc-pop.rc-open{opacity:1;visibility:visible;pointer-events:auto;transform:translate3d(var(--rx,0px),var(--ry,0px),0) scale(1);will-change:transform,height;}
-    .rc-pop.rc-still{transition:none;}
-    .rc-pop-in{transition:opacity 0.17s var(--ease-out);}
-    .rc-pop.rc-swap .rc-pop-in{opacity:0;transition:opacity 0.1s var(--ease-out);}
+    /* floating panel: the wrapper only positions, it never animates */
+    .rc-pop{position:fixed;left:0;top:0;z-index:150;width:400px;max-width:calc(100vw - 2rem);visibility:hidden;pointer-events:none;transform:translate3d(var(--rx,0px),var(--ry,0px),0);}
+    .rc-pop.rc-open{visibility:visible;pointer-events:auto;}
+    .rc-pop-in{background:var(--cream-mid);border-radius:16px;box-shadow:0 28px 70px rgba(6,18,11,0.62);overflow:hidden;opacity:0;transform:scale(0.97);transform-origin:center top;transition:opacity 0.12s var(--ease-out),transform 0.12s var(--ease-out);}
+    .rc-pop.rc-open .rc-pop-in{opacity:1;transform:scale(1);transition:opacity 0.18s var(--ease-out),transform 0.18s var(--ease-out);}
     .rc-pop .rc-thumb{aspect-ratio:16/9;border-radius:0;border:none;border-bottom:1px solid var(--border);}
     .rc-pop .rc-txt{padding:1.25rem 1.5rem 1.5rem;}
     .rc-pop .rc-t{font-size:1.4rem;margin-bottom:0.6rem;}
@@ -421,8 +420,7 @@
       .rc-hint{display:none;}
     }
     @media(prefers-reduced-motion:reduce){
-      .rc-pop,.rc-pop.rc-open{transform:translate3d(var(--rx,0px),var(--ry,0px),0);transition:opacity 0.15s linear,visibility 0.15s;}
-      .rc-pop-in{transition:none;}
+      .rc-pop-in,.rc-pop.rc-open .rc-pop-in{transform:none;transition:opacity 0.12s linear;}
       .rc-card.rc-next::before{animation:none;}
     }
     @media(max-width:900px){
@@ -1055,12 +1053,12 @@ function playFilm(btn){
   if(!rail||!pop||!inner)return;
   var cards=[].slice.call(rail.querySelectorAll(".rc-card"));
   var fine=window.matchMedia("(hover:hover) and (pointer:fine)");
-  var calm=window.matchMedia("(prefers-reduced-motion:reduce)");
-  var cur=null,openT=null,closeT=null,swapT=null;
-  var OPEN=130,CLOSE=170,SWAP=100,GAP=18,EDGE=16;
+  var cur=null,openT=null,closeT=null;
+  var OPEN=150,CLOSE=150,GAP=18,EDGE=16;
 
-  function seat(card,h){
-    var r=card.getBoundingClientRect(),w=pop.getBoundingClientRect().width;
+  function isOpen(){return pop.classList.contains("rc-open");}
+  function seat(card){
+    var r=card.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight;
     var x=r.left+(r.width-w)/2;
     x=Math.max(EDGE,Math.min(x,window.innerWidth-w-EDGE));
     var y=r.top-GAP;
@@ -1071,55 +1069,29 @@ function playFilm(btn){
   }
   function paint(card){
     var src=card.querySelector(".rc-in");
-    if(!src)return 0;
-    var clone=src.cloneNode(true);
-    var links=clone.querySelectorAll("a");
+    if(!src)return;
+    var clone=src.cloneNode(true),links=clone.querySelectorAll("a");
     for(var i=0;i<links.length;i++)links[i].tabIndex=-1;
-    pop.style.height="auto";
     inner.innerHTML="";
     inner.appendChild(clone);
-    return pop.getBoundingClientRect().height;
   }
   function show(card){
     if(card===cur)return;
+    var wasOpen=isOpen();
     if(cur)cur.classList.remove("rc-on");
     cur=card;
     card.classList.add("rc-on");
-    clearTimeout(swapT);
-    if(pop.classList.contains("rc-open")){
-      // already open: fade the words out, glide the box, fade the new words in
-      var from=pop.getBoundingClientRect().height;
-      pop.classList.add("rc-swap");
-      swapT=setTimeout(function(){
-        if(cur!==card)return;
-        var to=paint(card);
-        pop.classList.add("rc-still");
-        pop.style.height=from+"px";
-        void pop.offsetHeight;
-        pop.classList.remove("rc-still");
-        seat(card,to);
-        pop.style.height=to+"px";
-        pop.classList.remove("rc-swap");
-      },calm.matches?0:SWAP);
-    }else{
-      var h=paint(card);
-      pop.classList.add("rc-still");
-      seat(card,h);
-      pop.style.height=h+"px";
-      void pop.offsetHeight;
-      requestAnimationFrame(function(){
-        pop.classList.remove("rc-still");
-        requestAnimationFrame(function(){pop.classList.add("rc-open");});
-      });
-    }
+    paint(card);
+    seat(card);
+    if(!wasOpen)requestAnimationFrame(function(){pop.classList.add("rc-open");});
   }
   function hide(){
-    clearTimeout(openT);clearTimeout(closeT);clearTimeout(swapT);
-    closeT=null;openT=null;
+    clearTimeout(openT);clearTimeout(closeT);
+    openT=null;closeT=null;
     if(!cur)return;
     cur.classList.remove("rc-on");
     cur=null;
-    pop.classList.remove("rc-open","rc-swap");
+    pop.classList.remove("rc-open");
   }
 
   if(fine.matches){
@@ -1128,8 +1100,10 @@ function playFilm(btn){
       var c=e.target.closest?e.target.closest(".rc-card"):null;
       if(!c||c===cur)return;
       clearTimeout(closeT);closeT=null;
-      clearTimeout(openT);
-      openT=setTimeout(function(){show(c);},OPEN);
+      clearTimeout(openT);openT=null;
+      // first panel waits, every one after it opens instantly
+      if(isOpen())show(c);
+      else openT=setTimeout(function(){show(c);},OPEN);
     });
     document.addEventListener("pointermove",function(e){
       if(e.pointerType==="touch")return;
