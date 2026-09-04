@@ -387,7 +387,6 @@
     .rc-card{position:relative;flex:0 0 300px;scroll-snap-align:start;border-top:1px solid var(--border);padding:1.45rem 1.75rem 0 0;transition:border-color 0.22s var(--ease-out);}
     .rc-end{flex:1 0 5rem;border-top:1px solid var(--border);}
     .rc-card::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--muted);transition:background 0.22s var(--ease-out),transform 0.22s var(--ease-out);}
-    .rc-card.rc-next::before{background:var(--terra);animation:pulse-dot 2.4s ease-in-out infinite;}
     .rc-card.rc-on::before{background:var(--terra);transform:scale(1.4);animation:none;}
     .rc-card.rc-on{border-color:rgba(241,236,223,0.42);}
     .rc-card:focus-visible{outline:2px solid var(--terra);outline-offset:4px;border-radius:4px;}
@@ -405,7 +404,7 @@
     .rc-pop{position:fixed;left:0;top:0;z-index:150;width:400px;max-width:calc(100vw - 2rem);visibility:hidden;pointer-events:none;transform:translate3d(var(--rx,0px),var(--ry,0px),0);}
     .rc-pop.rc-open{visibility:visible;pointer-events:auto;}
     .rc-pop-in{background:var(--cream-mid);border-radius:16px;box-shadow:0 28px 70px rgba(6,18,11,0.62);overflow:hidden;opacity:0;transform:scale(0.97);transform-origin:center top;transition:opacity 0.12s var(--ease-out),transform 0.12s var(--ease-out);}
-    .rc-pop.rc-open .rc-pop-in{opacity:1;transform:scale(1);transition:opacity 0.18s var(--ease-out),transform 0.18s var(--ease-out);}
+    .rc-pop.rc-open .rc-pop-in{opacity:1;transform:scale(1);transition:opacity 0.4s var(--ease-out),transform 0.4s var(--ease-out);}
     .rc-pop .rc-thumb{aspect-ratio:16/9;border-radius:0;border:none;border-bottom:1px solid var(--border);}
     .rc-pop .rc-txt{padding:1.25rem 1.5rem 1.5rem;}
     .rc-pop .rc-t{font-size:1.4rem;margin-bottom:0.6rem;}
@@ -421,7 +420,6 @@
     }
     @media(prefers-reduced-motion:reduce){
       .rc-pop-in,.rc-pop.rc-open .rc-pop-in{transform:none;transition:opacity 0.12s linear;}
-      .rc-card.rc-next::before{animation:none;}
     }
     @media(max-width:900px){
       #recently{padding:0 0 3.25rem 1.5rem;}
@@ -476,7 +474,19 @@
 
   <div class="rc-rail rv" id="rc-rail" tabindex="0" role="list" aria-label="Recent notes">
 
-    <article class="rc-card rc-next" role="listitem" tabindex="0">
+    <article class="rc-card" role="listitem" tabindex="0">
+      <div class="rc-in">
+        <div class="rc-thumb"><img src="surrey-hackathon.jpg" alt="University of Surrey" loading="lazy" onerror="this.parentNode.classList.add('rc-blank');this.remove();"></div>
+        <div class="rc-txt">
+          <p class="rc-date">Tiero &middot; Coming up</p>
+          <h3 class="rc-t">A Surrey hackathon, built on tiero</h3>
+          <p class="rc-body">Surrey Business School are running tiero as the live client brief on an undergraduate module this autumn. Students get the app as it stands and three weeks to work out how to make it better, in teams, assessed. Josh and I brief them at the start and judge what comes back. The part I like is that they are the people the app is built for, so anything they tear into is worth hearing.</p>
+          <a class="rc-link" href="https://www.surrey.ac.uk/business-school" target="_blank" rel="noopener">Surrey Business School &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="rc-card" role="listitem" tabindex="0">
       <div class="rc-in">
         <div class="rc-thumb"><img src="film-tv-job-fair.jpg" alt="Cine Circle Film and TV Job Fair" loading="lazy" onerror="this.parentNode.classList.add('rc-blank');this.remove();"></div>
         <div class="rc-txt">
@@ -1054,7 +1064,7 @@ function playFilm(btn){
   var cards=[].slice.call(rail.querySelectorAll(".rc-card"));
   var fine=window.matchMedia("(hover:hover) and (pointer:fine)");
   var cur=null,openT=null,closeT=null;
-  var OPEN=150,CLOSE=150,GAP=18,EDGE=16;
+  var OPEN=700,CLOSE=600,GAP=18,EDGE=16;
 
   function isOpen(){return pop.classList.contains("rc-open");}
   function seat(card){
@@ -1101,9 +1111,7 @@ function playFilm(btn){
       if(!c||c===cur)return;
       clearTimeout(closeT);closeT=null;
       clearTimeout(openT);openT=null;
-      // first panel waits, every one after it opens instantly
-      if(isOpen())show(c);
-      else openT=setTimeout(function(){show(c);},OPEN);
+      openT=setTimeout(function(){show(c);},OPEN);
     });
     document.addEventListener("pointermove",function(e){
       if(e.pointerType==="touch")return;
