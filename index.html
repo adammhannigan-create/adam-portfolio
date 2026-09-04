@@ -370,6 +370,66 @@
     .wi-thumb{background:rgba(241,236,223,0.06);}
     /* Play button is now cream; give it a green icon */
     .film-play-btn svg{fill:var(--green);}
+
+    /* ── RECENTLY ── */
+    #recently{background:var(--cream);max-width:1300px;margin:0 auto;padding:0.25rem 0 5.5rem 5rem;}
+    .rc-head{display:flex;align-items:baseline;justify-content:space-between;gap:2rem;padding-right:5rem;margin-bottom:1.9rem;}
+    .rc-head-l{display:flex;align-items:baseline;gap:1.1rem;flex-wrap:wrap;}
+    h2.rc-hl{font-family:var(--ff-d);font-weight:800;font-size:clamp(1.8rem,3vw,2.5rem);line-height:1;letter-spacing:-0.025em;}
+    .rc-sub{font-size:0.95rem;color:var(--muted);max-width:38ch;}
+    .rc-hint{font-family:var(--ff-m);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap;display:flex;align-items:center;gap:0.5rem;transition:opacity 0.3s var(--ease-out);}
+    .rc-hint.rc-hint-off{opacity:0;}
+    .rc-rail{display:flex;align-items:stretch;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;padding-bottom:1.4rem;scrollbar-width:thin;scrollbar-color:rgba(241,236,223,0.22) transparent;}
+    .rc-rail::-webkit-scrollbar{height:4px;}
+    .rc-rail::-webkit-scrollbar-thumb{background:rgba(241,236,223,0.22);border-radius:2px;}
+    .rc-rail::-webkit-scrollbar-track{background:transparent;}
+    .rc-rail:focus-visible{outline:2px solid var(--terra);outline-offset:6px;border-radius:4px;}
+    .rc-card{position:relative;flex:0 0 300px;scroll-snap-align:start;border-top:1px solid var(--border);padding:1.45rem 1.75rem 0 0;transition:border-color 0.22s var(--ease-out);}
+    .rc-end{flex:1 0 5rem;border-top:1px solid var(--border);}
+    .rc-card::before{content:"";position:absolute;top:-4px;left:0;width:7px;height:7px;border-radius:50%;background:var(--muted);transition:background 0.22s var(--ease-out),transform 0.22s var(--ease-out);}
+    .rc-card.rc-next::before{background:var(--terra);animation:pulse-dot 2.4s ease-in-out infinite;}
+    .rc-card.rc-on::before{background:var(--terra);transform:scale(1.4);animation:none;}
+    .rc-card.rc-on{border-color:rgba(241,236,223,0.42);}
+    .rc-card:focus-visible{outline:2px solid var(--terra);outline-offset:4px;border-radius:4px;}
+    .rc-thumb{aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:var(--cream-mid);border:1px solid var(--border);}
+    .rc-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 0.5s var(--ease-out);}
+    .rc-card.rc-on .rc-thumb img{transform:scale(1.05);}
+    .rc-txt{padding-top:0.95rem;}
+    .rc-date{font-family:var(--ff-m);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+    .rc-t{font-family:var(--ff-d);font-weight:700;font-size:1.12rem;line-height:1.28;letter-spacing:-0.015em;margin-bottom:0.45rem;text-wrap:balance;}
+    .rc-body{font-size:0.9rem;line-height:1.6;color:rgba(241,236,223,0.74);text-wrap:pretty;}
+    .rc-card .rc-body{display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+    .rc-link{display:inline-flex;align-items:center;gap:0.35rem;margin-top:0.75rem;font-size:0.8rem;font-weight:600;color:var(--terra);border-bottom:1px solid transparent;transition:border-color 0.16s var(--ease-out);}
+    .rc-link:hover{border-color:var(--terra);}
+    /* floating panel */
+    .rc-pop{position:fixed;z-index:150;width:400px;max-width:calc(100vw - 2rem);background:var(--cream-mid);border-radius:16px;box-shadow:0 28px 70px rgba(6,18,11,0.62);overflow:hidden;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(10px) scale(0.97);transform-origin:top center;transition:opacity 0.22s var(--ease-out),transform 0.22s var(--ease-out),visibility 0.22s;}
+    .rc-pop.rc-open{opacity:1;visibility:visible;pointer-events:auto;transform:none;}
+    .rc-pop .rc-thumb{aspect-ratio:16/9;border-radius:0;border:none;border-bottom:1px solid var(--border);}
+    .rc-pop .rc-txt{padding:1.25rem 1.5rem 1.5rem;}
+    .rc-pop .rc-t{font-size:1.4rem;margin-bottom:0.6rem;}
+    .rc-pop .rc-body{font-size:0.95rem;color:rgba(241,236,223,0.84);}
+    @media (hover:none){
+      .rc-card{cursor:pointer;}
+      .rc-card .rc-body{-webkit-line-clamp:3;line-clamp:3;}
+      .rc-card.rc-x .rc-body{display:block;-webkit-line-clamp:none;line-clamp:none;overflow:visible;}
+      .rc-card .rc-txt::after{content:"Read more";display:block;margin-top:0.65rem;font-family:var(--ff-m);font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--terra);}
+      .rc-card.rc-x .rc-txt::after{content:"Show less";}
+      .rc-pop{display:none;}
+      .rc-hint{display:none;}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .rc-pop{transform:none;transition:opacity 0.15s linear,visibility 0.15s;}
+      .rc-card.rc-next::before{animation:none;}
+      .rc-pop.rc-open{transform:none;}
+    }
+    @media(max-width:900px){
+      #recently{padding:0 0 3.25rem 1.5rem;}
+      .rc-head{padding-right:1.5rem;margin-bottom:1.25rem;}
+      .rc-head-l{gap:0.5rem;}
+      .rc-sub{font-size:0.88rem;}
+      .rc-card{flex:0 0 76vw;max-width:300px;padding-right:1.1rem;}
+      .rc-end{flex:1 0 1.5rem;}
+    }
   </style>
 </head>
 <body>
@@ -379,6 +439,7 @@
   <span class="nav-logo">Adam Hannigan</span>
   <ul class="nav-links">
     <li class="nav-sec"><a href="#about" class="active">About</a></li>
+    <li class="nav-sec"><a href="#recently">Recently</a></li>
     <li class="nav-sec"><a href="#work">Work</a></li>
     <li class="nav-sec"><a href="#cv">CV</a></li>
     <li class="nav-div" aria-hidden="true"></li>
@@ -399,6 +460,60 @@
       <span class="loc-badge"><span class="loc-dot"></span>&nbsp;MANCHESTER, UK</span>
     </div>
   </div>
+</section>
+
+<!-- ════════════════ RECENTLY ════════════════ -->
+<!-- PLACEHOLDER COPY: swap the five entries below for Adam's own. Newest first. -->
+<section id="recently" aria-labelledby="rc-hl">
+  <div class="rc-head rv">
+    <div class="rc-head-l">
+      <h2 class="rc-hl" id="rc-hl">Recently</h2>
+      <p class="rc-sub">Short notes on what I&rsquo;m building, learning and turning up to.</p>
+    </div>
+    <span class="rc-hint" id="rc-hint" aria-hidden="true">Scroll &rarr;</span>
+  </div>
+
+  <div class="rc-rail rv" id="rc-rail" tabindex="0" role="list" aria-label="Recent notes">
+
+    <article class="rc-card rc-next" role="listitem" tabindex="0">
+      <div class="rc-in">
+        <div class="rc-thumb"><img src="film-tv-job-fair.jpg" alt="Cine Circle Film and TV Job Fair" loading="lazy" onerror="this.parentNode.classList.add('rc-blank');this.remove();"></div>
+        <div class="rc-txt">
+          <p class="rc-date">Film &middot; Coming up</p>
+          <h3 class="rc-t">Going to the Film and TV Job Fair</h3>
+          <p class="rc-body">Cine Circle&rsquo;s fair at Byron Hall in Harrow on 26 September. Around fifty stands of production companies, talent agents and crew recruiters, with talks and one to one CV reviews running through the day. Face to face beats another application form vanishing into a portal, so I am going.</p>
+          <a class="rc-link" href="https://www.cinecircle.co.uk/film-tv-job-fair-filmmaker" target="_blank" rel="noopener">Event details &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="rc-card" role="listitem" tabindex="0">
+      <div class="rc-in">
+        <div class="rc-thumb"><img src="tiero-seo.jpg" alt="The tiero blog index page" loading="lazy" onerror="this.parentNode.classList.add('rc-blank');this.remove();"></div>
+        <div class="rc-txt">
+          <p class="rc-date">Tiero &middot; Ongoing</p>
+          <h3 class="rc-t">Teaching myself SEO in public</h3>
+          <p class="rc-body">Nobody handed me this one. I have been building out tiero&rsquo;s blog, contact and comparison pages, reading what Search Console says back, and running Claude Code audits over the site to find where the sitemap is letting us down. It is the slowest feedback loop I have worked with, and the first thing I have learned entirely by doing it wrong first.</p>
+          <a class="rc-link" href="https://tiero.co.uk/blog" target="_blank" rel="noopener">Read the blog &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="rc-card" role="listitem" tabindex="0">
+      <div class="rc-in">
+        <div class="rc-thumb"><img src="clicky-open-day.jpg" alt="Open day discussion at Clicky&rsquo;s Manchester HQ" loading="lazy" onerror="this.parentNode.classList.add('rc-blank');this.remove();"></div>
+        <div class="rc-txt">
+          <p class="rc-date">Marketing &middot; July</p>
+          <h3 class="rc-t">Open day at Clicky</h3>
+          <p class="rc-body">A day at Clicky&rsquo;s Manchester HQ hearing how the industry is actually shifting. AI rewriting how SEO works, ads turning up inside ChatGPT, and what that does to anyone whose job is buying attention. It was a proper back and forth rather than a talk, which is the part that stuck.</p>
+          <a class="rc-link" href="https://www.linkedin.com/posts/cottonjonathan_its-always-a-real-pleasure-to-welcome-young-ugcPost-7485996641234309121-20WR" target="_blank" rel="noopener">See the post &#8599;</a>
+        </div>
+      </div>
+    </article>
+
+    <span class="rc-end" aria-hidden="true"></span>
+
+</div>
 </section>
 
 <!-- ════════════════ ABOUT DARK ════════════════ -->
@@ -845,6 +960,9 @@
 </footer>
 
 <!-- ════════════════ MODAL ════════════════ -->
+
+<!-- floating panel for RECENTLY -->
+<div class="rc-pop" id="rc-pop" aria-hidden="true"></div>
 <div class="mo" id="mo" onclick="closeMoBg(event)">
   <div class="mo-box" id="mo-box"></div>
 </div>
@@ -926,6 +1044,100 @@ function playFilm(btn){
   var w=btn.parentNode;
   w.innerHTML='<iframe src="https://www.youtube.com/embed/1R-1Y7M-Jsg?start=238&autoplay=1&rel=0&modestbranding=1&playsinline=1" title="To Suffocate Smiling" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
 }
+
+/* ── RECENTLY ── */
+(function(){
+  var rail=document.getElementById("rc-rail"),pop=document.getElementById("rc-pop"),hint=document.getElementById("rc-hint");
+  if(!rail||!pop)return;
+  var cards=[].slice.call(rail.querySelectorAll(".rc-card"));
+  var cur=null,openTimer=null;
+  var fine=window.matchMedia("(hover:hover) and (pointer:fine)");
+
+  function fill(card){
+    var src=card.querySelector(".rc-in");
+    if(!src)return;
+    var clone=src.cloneNode(true);
+    clone.querySelectorAll("a").forEach(function(a){a.tabIndex=-1;});
+    pop.innerHTML="";
+    pop.appendChild(clone);
+  }
+  function place(card){
+    var r=card.getBoundingClientRect(),w=pop.offsetWidth,h=pop.offsetHeight,m=16;
+    var x=r.left+(r.width-w)/2;
+    x=Math.max(m,Math.min(x,window.innerWidth-w-m));
+    var y=r.top-18;
+    if(y+h>window.innerHeight-m)y=window.innerHeight-h-m;
+    if(y<m)y=m;
+    pop.style.left=Math.round(x)+"px";
+    pop.style.top=Math.round(y)+"px";
+  }
+  function show(card){
+    if(card===cur)return;
+    if(cur)cur.classList.remove("rc-on");
+    cur=card;
+    card.classList.add("rc-on");
+    fill(card);
+    place(card);
+    pop.classList.add("rc-open");
+  }
+  function hide(){
+    if(!cur)return;
+    cur.classList.remove("rc-on");
+    cur=null;
+    pop.classList.remove("rc-open");
+  }
+
+  if(fine.matches){
+    rail.addEventListener("pointerover",function(e){
+      if(e.pointerType==="touch")return;
+      var c=e.target.closest?e.target.closest(".rc-card"):null;
+      if(!c||c===cur)return;
+      clearTimeout(openTimer);
+      openTimer=setTimeout(function(){show(c);},cur?0:70);
+    });
+    document.addEventListener("pointermove",function(e){
+      if(!cur||e.pointerType==="touch")return;
+      var t=e.target,inside=t.closest&&(t.closest(".rc-pop")||t.closest(".rc-card"));
+      if(inside)return;
+      clearTimeout(openTimer);
+      hide();
+    });
+    rail.addEventListener("pointerleave",function(e){
+      if(e.pointerType==="touch")return;
+      clearTimeout(openTimer);
+      setTimeout(function(){if(cur&&!pop.matches(":hover")&&!rail.matches(":hover"))hide();},120);
+    });
+  }
+
+  cards.forEach(function(c){
+    if(!fine.matches){
+      c.addEventListener("click",function(){c.classList.toggle("rc-x");});
+      c.addEventListener("keydown",function(e){
+        if(e.key==="Enter"||e.key===" "){e.preventDefault();c.classList.toggle("rc-x");}
+      });
+    }
+    c.addEventListener("focus",function(){if(fine.matches)show(c);});
+    c.addEventListener("blur",function(){setTimeout(function(){
+      if(cur===c&&!c.contains(document.activeElement))hide();
+    },0);});
+  });
+
+  function hintState(){
+    if(!hint)return;
+    hint.classList.toggle("rc-hint-off",rail.scrollLeft>24||rail.scrollWidth<=rail.clientWidth+8);
+  }
+  hintState();
+  window.addEventListener("resize",hintState);
+  window.addEventListener("load",hintState);
+
+  rail.addEventListener("scroll",function(){
+    hide();
+    hintState();
+  },{passive:true});
+  window.addEventListener("scroll",hide,{passive:true});
+  window.addEventListener("resize",hide);
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")hide();});
+})();
 </script>
 </body>
 </html>
