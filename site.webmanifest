@@ -1,0 +1,11 @@
+{
+  "name": "Adam Hannigan, Portfolio",
+  "short_name": "Adam Hannigan",
+  "icons": [
+    { "src": "icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ],
+  "theme_color": "#17301F",
+  "background_color": "#17301F",
+  "display": "standalone"
+}

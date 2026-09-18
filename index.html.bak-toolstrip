@@ -10,13 +10,6 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://adammhannigan-create.github.io/adam-portfolio/">
   <meta name="twitter:card" content="summary">
-  <link rel="icon" href="favicon.ico" sizes="any">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <link rel="manifest" href="site.webmanifest">
-  <meta name="theme-color" content="#17301F">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -458,34 +451,6 @@
       .rc-card{flex:0 0 76vw;max-width:300px;padding-right:1.1rem;}
       .rc-end{flex:1 0 1.5rem;}
     }
-
-    /* ── TOOL STRIP (foot of Skills) ── */
-    .tool-strip{max-width:1300px;margin:3.5rem auto 0;border-top:1px solid rgba(255,255,255,0.14);padding-top:1.7rem;}
-    .tool-lbl{font-family:var(--ff-m);font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:1.15rem;}
-    .tool-marquee{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);}
-    .tool-track{display:flex;width:max-content;animation:tool-slide 36s linear infinite;will-change:transform;}
-    .tool-marquee:hover .tool-track,.tool-marquee:focus-within .tool-track{animation-play-state:paused;}
-    .tool-set{display:flex;align-items:center;gap:0.85rem;padding-right:0.85rem;}
-    .tool-chip{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:62px;padding:0 1.35rem;border-radius:15px;background:var(--terra);border:1px solid rgba(14,32,22,0.07);box-shadow:0 12px 26px rgba(6,18,11,0.38);transition:transform 0.3s var(--ease-out),box-shadow 0.3s var(--ease-out);}
-    .tool-chip:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(6,18,11,0.5);}
-    .tool-chip img{height:24px;width:auto;display:block;}
-    .tool-chip.is-icon{padding:0 0.9rem;}
-    .tool-chip.is-icon img{height:40px;border-radius:9px;}
-    @keyframes tool-slide{from{transform:translate3d(0,0,0);}to{transform:translate3d(-50%,0,0);}}
-    @media(max-width:900px){
-      .tool-strip{margin-top:2.5rem;padding-top:1.35rem;}
-      .tool-lbl{margin-bottom:0.9rem;}
-      .tool-chip{height:52px;padding:0 1.05rem;border-radius:13px;}
-      .tool-chip img{height:20px;}
-      .tool-chip.is-icon{padding:0 0.72rem;}
-      .tool-chip.is-icon img{height:33px;}
-      .tool-set{gap:0.65rem;padding-right:0.65rem;}
-    }
-    @media(prefers-reduced-motion:reduce){
-      .tool-track{animation:none;}
-      .tool-marquee{overflow-x:auto;scrollbar-width:none;}
-      .tool-marquee::-webkit-scrollbar{display:none;}
-    }
   </style>
 </head>
 <body>
@@ -776,54 +741,6 @@
       </div>
     </div>
   </div>
-
-    <div class="tool-strip rv">
-      <p class="tool-lbl">What I work in, day to day</p>
-      <div class="tool-marquee" role="img" aria-label="Software I use: DaVinci Resolve, CapCut Pro, Claude, Microsoft PowerPoint, ChatGPT, Microsoft Excel, eBay, Microsoft Outlook">
-        <div class="tool-track">
-        <div class="tool-set">
-          <span class="tool-chip is-icon"><img src="logo-davinci.png" alt="DaVinci Resolve" loading="lazy" decoding="async"></span>
-          <span class="tool-chip"><img src="logo-capcut.png" alt="CapCut Pro" loading="lazy" decoding="async"></span>
-          <span class="tool-chip"><img src="logo-claude.png" alt="Claude" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon"><img src="logo-powerpoint.png" alt="Microsoft PowerPoint" loading="lazy" decoding="async"></span>
-          <span class="tool-chip"><img src="logo-chatgpt.png" alt="ChatGPT" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon"><img src="logo-excel.png" alt="Microsoft Excel" loading="lazy" decoding="async"></span>
-          <span class="tool-chip"><img src="logo-ebay.png" alt="eBay" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon"><img src="logo-outlook.png" alt="Microsoft Outlook" loading="lazy" decoding="async"></span>
-        </div>
-        <div class="tool-set" aria-hidden="true">
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-davinci.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-capcut.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-claude.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-powerpoint.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-chatgpt.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-excel.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-ebay.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-outlook.png" loading="lazy" decoding="async"></span>
-        </div>
-        <div class="tool-set" aria-hidden="true">
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-davinci.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-capcut.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-claude.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-powerpoint.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-chatgpt.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-excel.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-ebay.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-outlook.png" loading="lazy" decoding="async"></span>
-        </div>
-        <div class="tool-set" aria-hidden="true">
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-davinci.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-capcut.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-claude.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-powerpoint.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-chatgpt.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-excel.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip" aria-hidden="true"><img src="logo-ebay.png" loading="lazy" decoding="async"></span>
-          <span class="tool-chip is-icon" aria-hidden="true"><img src="logo-outlook.png" loading="lazy" decoding="async"></span>
-        </div>
-        </div>
-      </div>
-    </div>
 </section>
 
 <section id="cv">
