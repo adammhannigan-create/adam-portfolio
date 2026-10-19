@@ -171,6 +171,7 @@
     .film-feature-cap em{font-family:var(--ff-a);font-style:italic;color:var(--terra);font-size:1.15rem;}
     .mo-embed{position:relative;width:100%;aspect-ratio:16/9;background:#000;border-radius:20px 20px 0 0;overflow:hidden;}
     .mo-embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+    .mo-embed.mo-desk iframe{inset:auto;top:0;left:0;max-width:none;transform-origin:0 0;}
     .mo-embed-poster{display:block;cursor:pointer;}
     .film-script-label{font-family:var(--ff-a);font-size:1.5rem;color:var(--terra);text-align:right;margin-bottom:1rem;}
     h2.film-hl{font-family:var(--ff-d);font-weight:800;font-size:clamp(2.5rem,4.5vw,4.5rem);line-height:1.05;letter-spacing:-0.03em;color:#fff;margin-bottom:2rem;}
@@ -1108,7 +1109,7 @@ const MG={
 const PJ={
   tiero:{t:"Tiero",n:"01",y:"2026",r:"Co-Founder, Product &amp; Design",
     d:"Tiero is a platform for graduates going through the job hunt, the part nobody prepares you for. It tracks every application on a pipeline board, coaches you through cover letters without sounding like a template, and gives you somewhere to actually practise: recorded video interviews, assessment centre prep, final round simulations. I'm building it with a co-founder, JS. We're heading toward friends and family testing now, with an agreed university partnership with the University of Surrey.<br><br>I lead the build and design side, turning product decisions into working software, and the earlier work too: competitor research, working out what Tiero should say differently to tools like CareerFlow, and translating a vague 'this feels off' into a specific, buildable change. I prototype fast in Lovable to test an idea, then rebuild it properly inside the real codebase with Claude Code, using the app's actual components and design tokens instead of copy-pasted mock HTML.<br><br>I also use AI for the less glamorous half of building a product: structuring a competitor analysis, turning a messy list of user complaints into a prioritised backlog, drafting the copy Tiero uses to explain itself. None of that replaces judgment, it just removes the blank page.<br><br>I also taught myself SEO and AEO for Tiero, no course, no budget, just Google&rsquo;s own documentation, a lot of live commits, and fixing what didn&rsquo;t work (the commit history from August is honestly titled &lsquo;seo&rsquo;, &lsquo;seo fixes&rsquo;, &lsquo;seo wokr&rsquo;, typo included). Tiero is built the way a lot of modern apps are, which search engines and AI crawlers were reading as an empty page, so I generate a real static version of every page at build time. I gave every page its own title and description, added a sitemap that updates itself, and set the site up properly in Search Console instead of guessing. I let AI crawlers in on purpose rather than blocking them, wrote a plain-language file telling ChatGPT and Perplexity what Tiero actually does, and built seven comparison pages against named competitors that say honestly where they&rsquo;re better, because a page that concedes ground is one an AI will actually quote.<br><br>What this has actually built: writing specs precise enough that someone else, human or AI, can execute them without ten follow-up questions. Reading vague feedback ('the video section feels hidden') and turning it into something buildable with a feasibility and impact rating attached. Knowing when to prototype fast and sloppy versus when to build it properly, and not confusing the two. Working design systems, tokens, spacing, accessibility, reduced motion, the stuff that doesn't show up in a screenshot but is the difference between something that looks designed and something that just looks like a mock. And running a product alongside a co-founder, with real deadlines, an agreed partnership, and real users about to see it.",
-    tags:["PRODUCT","DESIGN","AI-ASSISTED BUILD"],lnk:"tiero.co.uk/app ↗",href:"https://tiero.co.uk/app",vid:"tiero.mp4"},
+    tags:["PRODUCT","DESIGN","AI-ASSISTED BUILD"],lnk:"tiero.co.uk/app ↗",href:"https://tiero.co.uk/app",vid:"tiero.mp4",site:"https://tiero.co.uk/",desk:1280},
   boohoo:{t:"BooHoo MAN",n:"04",y:"2023–25",r:"Freelance E-Commerce",
     d:"On-set and behind the scenes for fast-moving e-commerce production, organised, punctual, and detail-driven across high-volume content days. Learned to keep a complex shoot moving and a brand looking sharp under pressure.",
     tags:["E-COMMERCE","PRODUCTION","ASSISTANCE"],img:"boohoo"},
@@ -1132,7 +1133,7 @@ function openModal(id){
       ?`<a class="mo-embed mo-embed-poster" href="${p.href}" target="_blank" rel="noopener"><img class="film-thumb" src="https://i.ytimg.com/vi/1R-1Y7M-Jsg/hqdefault.jpg" alt=""><span class="film-play-btn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></a>`
       :`<div class="mo-embed"><iframe src="${p.yt}" title="${p.t}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`)
     :p.site
-    ?`<div class="mo-embed"><iframe src="${p.site}" title="${p.t}" loading="lazy"></iframe></div>`
+    ?`<div class="mo-embed${p.desk?" mo-desk":""}"><iframe src="${p.site}" title="${p.t}" loading="lazy"${p.desk?` style="width:${p.desk}px;height:${Math.round(p.desk*9/16)}px" data-w="${p.desk}"`:""}></iframe></div>`
     :p.vid
     ?`<video id="mo-video" autoplay loop controls playsinline style="width:100%;height:auto;max-height:68vh;object-fit:contain;border-radius:20px 20px 0 0;display:block;background:#000;"><source src="${p.vid}" type="video/mp4"></video>`
     :src?`<img class="mo-img" src="${src}" alt="${p.t}">`
@@ -1140,9 +1141,12 @@ function openModal(id){
   const lh=p.href?`<a href="${p.href}" target="_blank" rel="noopener" class="mo-link">${p.lnk}</a>`:"";
   box.innerHTML=`<button class="mo-close" onclick="closeModal()">&#10005;</button>${ih}<div class="mo-body"><div class="mo-meta"><span class="mo-eyebrow">PROJECT ${p.n} &middot; ${p.y}</span><span class="mo-role">${p.r}</span></div><h2 class="mo-title">${p.t}</h2><p class="mo-desc">${p.d}</p><div class="mo-tags">${p.tags.map(t=>`<span class="mo-tag">${t}</span>`).join("")}</div>${lh}</div>`;
   overlay.classList.add("open");
+  fitDesk();
   const mv=box.querySelector("#mo-video");
   if(mv){mv.muted=false;mv.volume=1;const pr=mv.play();if(pr&&pr.catch)pr.catch(()=>{mv.muted=true;mv.play();});}
 }
+function fitDesk(){const f=document.querySelector("#mo-box .mo-desk iframe");if(!f)return;const w=+f.dataset.w||1280;f.style.transform="scale("+(f.parentNode.clientWidth/w)+")";}
+window.addEventListener("resize",fitDesk);
 function closeModal(){const v=document.querySelector("#mo-video");if(v)v.pause();const f=document.querySelector("#mo-box iframe");if(f)f.src="about:blank";document.getElementById("mo").classList.remove("open");}
 function closeMoBg(e){if(e.target===document.getElementById("mo"))closeModal();}
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();});
