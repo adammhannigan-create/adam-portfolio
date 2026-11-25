@@ -449,6 +449,8 @@
     .rc-thumb{aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:var(--cream-mid);border:1px solid var(--border);}
     .rc-thumb img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 0.5s var(--ease-out);}
     .rc-card.rc-on .rc-thumb img{transform:scale(1.05);}
+    .rc-thumb.rc-logo{background:#FCFAF3;display:flex;align-items:center;justify-content:center;}
+    .rc-thumb.rc-logo img{width:auto;height:76%;object-fit:contain;}
     .rc-txt{padding-top:0.95rem;}
     .rc-date{font-family:var(--ff-m);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
     .rc-t{font-family:var(--ff-d);font-weight:700;font-size:1.12rem;line-height:1.28;letter-spacing:0.01em;margin-bottom:0.45rem;text-wrap:balance;}
@@ -697,6 +699,17 @@
   </div>
 
   <div class="rc-rail rv" id="rc-rail" tabindex="0" role="list" aria-label="Recent notes">
+
+    <article class="rc-card" role="listitem" tabindex="0">
+      <div class="rc-in">
+        <div class="rc-thumb rc-logo"><img src="upton-logo.webp" alt="Upton-by-Chester High School logo" loading="lazy" onerror="this.parentNode.classList.add('rc-blank');this.remove();"></div>
+        <div class="rc-txt">
+          <p class="rc-date">Film &amp; media &middot; Fridays</p>
+          <h3 class="rc-t">Back at Upton-by-Chester High School</h3>
+          <p class="rc-body">Every Friday I&rsquo;m back at the school I left, volunteering in the media department. I support the teachers across GCSE and A level Media and the BTEC Level 2 and 3 in practical filmmaking, and help students one to one. When they were studying <em>Get Out</em>, I offered Du Bois&rsquo;s double consciousness, from an essay I wrote at university. It&rsquo;s an idea the course hadn&rsquo;t reached yet. I got back in touch with my old teacher to give something back, and it turns out I still love talking film and media.</p>
+        </div>
+      </div>
+    </article>
 
     <article class="rc-card" role="listitem" tabindex="0">
       <div class="rc-in">
